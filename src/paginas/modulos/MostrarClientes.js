@@ -125,7 +125,7 @@ export const MostrarClientes = () => {
                                                         >
                                                             <i className="fa fa-pen"></i> Editar
                                                         </Link>
-                                                        <p className="d-flex flex-column flex-sm-row justify-content-center gap-0 gap-sm-1 px-0 px-sm-1"></p>
+                                                        <p className="d-flex flex-column flex-sm-row justify-content-center gap-0 gap-sm-0 px-0 px-sm-1"></p>
                                                         <button 
                                                             onClick={(e) => eliminarClientes(e, cliente._id)} 
                                                             className='btn btn-sm btn-danger w-100'
