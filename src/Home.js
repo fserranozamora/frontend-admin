@@ -14,9 +14,9 @@ const Home = () => {
             <div className="content-wrapper">
 
                 <ContentHeader
-                    titulo={"Dashboard"}
+                    titulo={"Página principal"}
                     breadCrumb1={"Inicio"}
-                    breadCrumb2={"Dashboard"}
+                    breadCrumb2={"Página principal"}
                     ruta1={"/home"}
                 />
 
