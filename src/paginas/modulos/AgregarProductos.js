@@ -97,14 +97,6 @@ const AgregarProductos = () => {
             <div className="card card-primary shadow-sm">
               <div className="card-header">
                 <h3 className="card-title">Datos del Producto</h3>
-                <div className="card-tools">
-                  <button type="button" className="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                    <i className="fas fa-minus" />
-                  </button>
-                  <button type="button" className="btn btn-tool" data-card-widget="remove" title="Remove">
-                    <i className="fas fa-times" />
-                  </button>
-                </div>
               </div>
 
               <form onSubmit={onSubmit}>
