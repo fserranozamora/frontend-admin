@@ -119,10 +119,7 @@ export const MostrarProductos = () => {
                                                         >
                                                             <i className="fa fa-pen"></i> Editar
                                                         </Link>
-                                                        <p>&nbsp;</p>
-                                                        <p>&nbsp;</p>
-                                                        <p>&nbsp;</p>
-                                                        <p>&nbsp;</p>
+                                                        <p className="d-flex flex-column flex-sm-row justify-content-center gap- gap-sm-0 px-0 px-sm-2"></p>
                                                         <button 
                                                             onClick={(e) => eliminarProductos(e, producto._id)} 
                                                             className='btn btn-sm btn-danger w-100'
