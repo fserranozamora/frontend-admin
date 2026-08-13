@@ -22,40 +22,51 @@ export const MostrarClientes = () => {
 
     const eliminarClientes = async (e, idCliente) => {
         e.preventDefault();
-        const response = await APIInvoke.invokeDELETE(`/api/clientes/${idCliente}`);
+        
+        try {
+            const response = await APIInvoke.invokeDELETE(`/api/clientes/${idCliente}`);
 
-        if (response.msg === 'El cliente fue eliminado') {
-            const msg = "El cliente fue eliminado correctamente";
-            swal({
-                title: 'Información',
-                text: msg,
-                icon: 'success',
-                buttons: {
-                    confirm: {
-                        text: 'OK',
-                        value: true,
-                        visible: true,
-                        className: 'btn btn-primary',
-                        closeModal: true
+            if (response && response.msg === 'El cliente fue eliminado') {
+                const msg = "El cliente fue eliminado correctamente";
+                swal({
+                    title: 'Información',
+                    text: msg,
+                    icon: 'success',
+                    buttons: {
+                        confirm: {
+                            text: 'OK',
+                            value: true,
+                            visible: true,
+                            className: 'btn btn-primary',
+                            closeModal: true
+                        }
                     }
-                }
-            });
-            getClientes();
-        } else {
-            const msg = "El cliente no fue eliminado correctamente";
+                });
+                getClientes();
+            } else {
+                const msg = response?.msg || "El cliente no fue eliminado correctamente";
+                swal({
+                    title: 'Error',
+                    text: msg,
+                    icon: 'error',
+                    buttons: {
+                        confirm: {
+                            text: 'OK',
+                            value: true,
+                            visible: true,
+                            className: 'btn btn-danger',
+                            closeModal: true
+                        }
+                    }
+                });
+            }
+        } catch (error) {
+            console.error("Error en petición DELETE:", error);
             swal({
-                title: 'Error',
-                text: msg,
+                title: 'Error de Red',
+                text: "No se pudo conectar con el servidor.",
                 icon: 'error',
-                buttons: {
-                    confirm: {
-                        text: 'OK',
-                        value: true,
-                        visible: true,
-                        className: 'btn btn-danger',
-                        closeModal: true
-                    }
-                }
+                className: 'btn btn-danger'
             });
         }
     };
@@ -73,8 +84,7 @@ export const MostrarClientes = () => {
                     ruta1={"/home"}
                 />
 
-                {/* Corrección de seccion a section */}
-                <section className="content">
+                <section className="content px-2 px-sm-3">
                     <div className="card">
                         <div className="card-header">
                             <h3 className="card-title">
@@ -85,7 +95,6 @@ export const MostrarClientes = () => {
                         </div>
 
                         <div className="card-body">
-                            {/* table-responsive añade scroll horizontal automático en celulares y tablets */}
                             <div className="table-responsive">
                                 <table className="table table-bordered table-striped table-hover align-middle">
                                     <thead className="table-success">
@@ -96,8 +105,8 @@ export const MostrarClientes = () => {
                                             <th style={{ width: '18%', minWidth: '180px' }}>Correo</th>
                                             <th style={{ width: '11%', minWidth: '110px' }}>Teléfono</th>
                                             <th style={{ width: '13%', minWidth: '140px' }}>Dirección</th>
-                                            {/* Columna de acciones más ancha para permitir la separación extrema */}
-                                            <th style={{ width: '22%', minWidth: '220px' }} className="text-center">Acciones</th>
+                                            {/* 🌟 minWidth en 240px le da el espacio físico perfecto para que respiren con la separación amplia */}
+                                            <th style={{ width: '22%', minWidth: '240px' }} className="text-center">Acciones</th>
                                         </tr>
                                     </thead>
 
@@ -111,29 +120,34 @@ export const MostrarClientes = () => {
                                                 <td>{cliente.telefono}</td>
                                                 <td>{cliente.direccion}</td>
                                                 <td className="text-center" style={{ verticalAlign: 'middle' }}>
+                                                    
                                                     {/* 
-                                                      Explicación de clases responsivas:
-                                                      - d-flex flex-column: Por defecto (celulares) los botones van uno arriba del otro.
-                                                      - flex-sm-row: A partir de pantallas SM (tablets/PC) se vuelven horizontales.
-                                                      - gap-2 gap-sm-5: Separación pequeña en móvil, separación máxima (gap-5) en pantallas grandes.
-                                                      - px-sm-4: Margen a los lados en pantallas grandes para no tocar los bordes de la celda.
+                                                      - flex-row: Siempre horizontales en cualquier pantalla.
+                                                      - gap-4: Crea una separación muy marcada en medio de ambos botones.
+                                                      - px-3: Colchón interno de seguridad para alejarlos de los bordes laterales de la celda.
                                                     */}
-                                                    <div className="d-flex flex-column flex-sm-row justify-content-center gap-2 gap-sm-5 px-0 px-sm-4">
+                                                    <div className="d-flex flex-row justify-content-center align-items-center gap-4 px-3">
+                                                        
+                                                        {/* Botón Editar */}
                                                         <Link 
                                                             to={`/clientes/editar/${cliente._id}`} 
-                                                            className='btn btn-sm btn-primary w-100'
+                                                            className="btn btn-sm btn-primary w-100 d-flex align-items-center justify-content-center py-1"
+                                                            style={{ minWidth: '95px' }}
                                                         >
-                                                            <i className="fa fa-pen"></i> Editar
+                                                            <i className="fa fa-pen mr-2"></i> Editar
                                                         </Link>
-                                                        <p className="d-flex flex-column flex-sm-row justify-content-center gap-0 gap-sm-0 px-0 px-sm-1"></p>
+                                                        <p className="d-flex flex-column flex-sm-row justify-content-center gap- gap-sm-0 px-2 px-sm-2"></p>
+                                                        {/* Botón Eliminar */}
                                                         <button 
                                                             onClick={(e) => eliminarClientes(e, cliente._id)} 
-                                                            className='btn btn-sm btn-danger w-100'
+                                                            className="btn btn-sm btn-danger w-100 d-flex align-items-center justify-content-center py-1"
+                                                            style={{ minWidth: '100px' }}
                                                         >
-                                                            <i className="fa fa-trash"></i> Eliminar
+                                                            <i className="fa fa-trash mr-2"></i> Eliminar
                                                         </button>
-                                                       
+
                                                     </div>
+
                                                 </td>
                                             </tr>
                                         ))}
