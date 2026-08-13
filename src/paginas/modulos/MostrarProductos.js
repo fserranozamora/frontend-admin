@@ -77,7 +77,7 @@ export const MostrarProductos = () => {
                     <div className="card">
                         <div className="card-header">
                             <h3 className="card-title">
-                                <Link to={"/productos/agregar"} className="btn btn-block btn-success btn-sm"> 
+                                <Link to={"/productos/agregar"} className="btn btn-block btn-success btn-sm">
                                     Agregar Productos <i className="fa fa-plus"> </i>
                                 </Link>
                             </h3>
@@ -104,7 +104,7 @@ export const MostrarProductos = () => {
                                                 <td>{producto.precio_unitario}</td>
                                                 <td>{producto.precio_total}</td>
                                                 <td className="text-center" style={{ verticalAlign: 'middle' }}>
-                                                    
+
                                                     {/* 
                                                       🌟 CORRECCIÓN ESTRUCTURAL:
                                                       - flex-row mantiene los botones horizontales siempre (celulares y PC).
@@ -112,19 +112,19 @@ export const MostrarProductos = () => {
                                                       - px-3 evita que los botones toquen los bordes de la celda.
                                                     */}
                                                     <div className="d-flex flex-row justify-content-center align-items-center gap-4 px-3">
-                                                        
+
                                                         {/* Botón Editar */}
-                                                        <Link 
-                                                            to={`/productos/editar/${producto._id}`} 
+                                                        <Link
+                                                            to={`/productos/editar/${producto._id}`}
                                                             className='btn btn-sm btn-primary w-100 d-flex align-items-center justify-content-center py-1'
                                                             style={{ minWidth: '95px' }}
                                                         >
                                                             <i className="fa fa-pen mr-2"></i> Editar
                                                         </Link>
-<p className="d-flex flex-column flex-sm-row justify-content-center gap- gap-sm-0 px-2 px-sm-2"></p>                                                        
+                                                        <p className="d-flex flex-column flex-sm-row justify-content-center gap- gap-sm-0 px-2 px-sm-2"></p>
                                                         {/* Botón Eliminar */}
-                                                        <button 
-                                                            onClick={(e) => eliminarProductos(e, producto._id)} 
+                                                        <button
+                                                            onClick={(e) => eliminarProductos(e, producto._id)}
                                                             className='btn btn-sm btn-danger w-100 d-flex align-items-center justify-content-center py-1'
                                                             style={{ minWidth: '100px' }}
                                                         >
