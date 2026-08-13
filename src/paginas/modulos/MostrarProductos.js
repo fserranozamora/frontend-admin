@@ -73,8 +73,7 @@ export const MostrarProductos = () => {
                     ruta1={"/home"}
                 />
 
-                {/* Corrección de seccion a section */}
-                <section className="content">
+                <section className="content px-2 px-sm-3">
                     <div className="card">
                         <div className="card-header">
                             <h3 className="card-title">
@@ -84,18 +83,16 @@ export const MostrarProductos = () => {
                             </h3>
                         </div>
                         <div className="card-body">
-                            {/* table-responsive previene que la tabla se rompa en pantallas de celulares o tablets */}
                             <div className="table-responsive">
                                 <table className="table table-bordered table-striped table-hover align-middle">
                                     <thead className="table-success">
                                         <tr>
-                                            {/* Redistribución de anchuras y tamaños mínimos obligatorios */}
                                             <th style={{ width: '35%', minWidth: '200px' }}>Nombre Producto</th>
                                             <th style={{ width: '13%', minWidth: '90px' }}>Unidades</th>
                                             <th style={{ width: '15%', minWidth: '120px' }}>Precio unitario</th>
                                             <th style={{ width: '15%', minWidth: '120px' }}>Precio total</th>
-                                            {/* Espacio ampliado al 22% para permitir la separación extrema horizontal de los botones */}
-                                            <th style={{ width: '22%', minWidth: '220px' }} className="text-center">Acciones</th>
+                                            {/* 🌟 Ajustado el minWidth a 240px para que el texto de ambos botones quepa holgadamente codo a codo */}
+                                            <th style={{ width: '22%', minWidth: '240px' }} className="text-center">Acciones</th>
                                         </tr>
                                     </thead>
 
@@ -107,26 +104,35 @@ export const MostrarProductos = () => {
                                                 <td>{producto.precio_unitario}</td>
                                                 <td>{producto.precio_total}</td>
                                                 <td className="text-center" style={{ verticalAlign: 'middle' }}>
+                                                    
                                                     {/* 
-                                                      Estructura híbrida adaptable:
-                                                      - Móviles: Botones apilados (flex-column) con gap-2
-                                                      - Computadoras/Tablets: Botones horizontales (flex-sm-row) con separación máxima (gap-sm-5)
+                                                      🌟 CORRECCIÓN ESTRUCTURAL:
+                                                      - flex-row mantiene los botones horizontales siempre (celulares y PC).
+                                                      - gap-4 crea la separación de 24px ideal entre ambos.
+                                                      - px-3 evita que los botones toquen los bordes de la celda.
                                                     */}
-                                                    <div className="d-flex flex-column flex-sm-row justify-content-center gap-2 gap-sm-5 px-0 px-sm-4">
+                                                    <div className="d-flex flex-row justify-content-center align-items-center gap-4 px-3">
+                                                        
+                                                        {/* Botón Editar */}
                                                         <Link 
                                                             to={`/productos/editar/${producto._id}`} 
-                                                            className='btn btn-sm btn-primary w-100'
+                                                            className='btn btn-sm btn-primary w-100 d-flex align-items-center justify-content-center py-1'
+                                                            style={{ minWidth: '95px' }}
                                                         >
-                                                            <i className="fa fa-pen"></i> Editar
+                                                            <i className="fa fa-pen mr-2"></i> Editar
                                                         </Link>
-                                                        <p className="d-flex flex-column flex-sm-row justify-content-center gap- gap-sm-0 px-0 px-sm-2"></p>
+<p className="d-flex flex-column flex-sm-row justify-content-center gap- gap-sm-0 px-2 px-sm-2"></p>                                                        
+                                                        {/* Botón Eliminar */}
                                                         <button 
                                                             onClick={(e) => eliminarProductos(e, producto._id)} 
-                                                            className='btn btn-sm btn-danger w-100'
+                                                            className='btn btn-sm btn-danger w-100 d-flex align-items-center justify-content-center py-1'
+                                                            style={{ minWidth: '100px' }}
                                                         >
-                                                            <i className="fa fa-trash"></i> Eliminar
+                                                            <i className="fa fa-trash mr-2"></i> Eliminar
                                                         </button>
+
                                                     </div>
+
                                                 </td>
                                             </tr>
                                         ))}
