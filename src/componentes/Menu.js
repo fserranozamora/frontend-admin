@@ -44,7 +44,7 @@ const Menu = () => {
             >
                 <li className="nav-item">
                     <Link to={"/home"} className={`nav-link ${checkActive("/home")}`}>
-                        <i className="nav-icon fas fa-home text-primary" />
+                        <i className="nav-icon fas fa-home text-mute" />
                         <p className="text-truncate">Inicio</p>
                     </Link>
                 </li>
