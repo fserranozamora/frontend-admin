@@ -91,8 +91,8 @@ export const MostrarProductos = () => {
                                             <th style={{ width: '13%', minWidth: '90px' }}>Unidades</th>
                                             <th style={{ width: '15%', minWidth: '120px' }}>Precio unitario</th>
                                             <th style={{ width: '15%', minWidth: '120px' }}>Precio total</th>
-                                            {/* 🌟 Ajustado el minWidth a 240px para que el texto de ambos botones quepa holgadamente codo a codo */}
-                                            <th style={{ width: '22%', minWidth: '240px' }} className="text-center">Acciones</th>
+                                            {/* Ajustado el minWidth a 180px para dar espacio óptimo a los botones cuadrados */}
+                                            <th style={{ width: '22%', minWidth: '180px' }} className="text-center">Acciones</th>
                                         </tr>
                                     </thead>
 
@@ -105,30 +105,31 @@ export const MostrarProductos = () => {
                                                 <td>{producto.precio_total}</td>
                                                 <td className="text-center" style={{ verticalAlign: 'middle' }}>
 
-                                                    {/* 
-                                                      🌟 CORRECCIÓN ESTRUCTURAL:
-                                                      - flex-row mantiene los botones horizontales siempre (celulares y PC).
-                                                      - gap-4 crea la separación de 24px ideal entre ambos.
-                                                      - px-3 evita que los botones toquen los bordes de la celda.
-                                                    */}
-                                                    <div className="d-flex flex-row justify-content-center align-items-center gap-4 px-3">
+                                                    {/* Contenedor centralizado libre de propiedades que aplasten la fila horizontal */}
+                                                    <div className="d-flex flex-row justify-content-center align-items-center p-1">
 
-                                                        {/* Botón Editar */}
+                                                        {/* 
+                                                          Botón Editar:
+                                                          - mr-2 mr-md-3: 🌟 CLAVE para separar los botones de forma física garantizada.
+                                                          - flex-column flex-md-row: Apila icono y texto en móvil (cuadrado) y los alinea en PC.
+                                                        */}
                                                         <Link
                                                             to={`/productos/editar/${producto._id}`}
-                                                            className='btn btn-sm btn-primary w-100 d-flex align-items-center justify-content-center py-1'
-                                                            style={{ minWidth: '95px' }}
+                                                            className="btn btn-sm btn-primary d-flex flex-column flex-md-row align-items-center justify-content-center p-2 lh-sm mr-2 mr-md-3 text-decoration-none"
+                                                            style={{ width: '65px', height: '65px', minWidth: '100px', minHeight: '0px' }}
                                                         >
-                                                            <i className="fa fa-pen mr-2"></i> Editar
+                                                            <i className="fa fa-pen mb-1 mb-md-0 mr-0 mr-md-2"></i>
+                                                            <span style={{ fontSize: '1rem' }} className="d-block text-center font-weight-normal">Editar</span>
                                                         </Link>
-                                                        <p className="d-flex flex-column flex-sm-row justify-content-center gap- gap-sm-0 px-2 px-sm-2"></p>
-                                                        {/* Botón Eliminar */}
+
+                                                        {/* Botón Eliminar: Mismo tamaño simétrico */}
                                                         <button
                                                             onClick={(e) => eliminarProductos(e, producto._id)}
-                                                            className='btn btn-sm btn-danger w-100 d-flex align-items-center justify-content-center py-1'
-                                                            style={{ minWidth: '100px' }}
+                                                            className="btn btn-sm btn-danger d-flex flex-column flex-md-row align-items-center justify-content-center p-2 lh-sm"
+                                                            style={{ width: '65px', height: '65px', minWidth: '100px', minHeight: '0px' }}
                                                         >
-                                                            <i className="fa fa-trash mr-2"></i> Eliminar
+                                                            <i className="fa fa-trash mb-1 mb-md-0 mr-0 mr-md-2"></i>
+                                                            <span style={{ fontSize: '1rem' }} className="d-block text-center font-weight-normal">Eliminar</span>
                                                         </button>
 
                                                     </div>
