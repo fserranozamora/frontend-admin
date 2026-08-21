@@ -105,8 +105,8 @@ export const MostrarClientes = () => {
                                             <th style={{ width: '18%', minWidth: '180px' }}>Correo</th>
                                             <th style={{ width: '11%', minWidth: '110px' }}>Teléfono</th>
                                             <th style={{ width: '13%', minWidth: '140px' }}>Dirección</th>
-                                            {/* 🌟 minWidth en 240px le da el espacio físico perfecto para que respiren con la separación amplia */}
-                                            <th style={{ width: '22%', minWidth: '240px' }} className="text-center">Acciones</th>
+                                            {/* El minWidth de 180px reserva el espacio horizontal exacto para que entren ambos botones sin pegarse */}
+                                            <th style={{ width: '22%', minWidth: '180px' }} className="text-center">Acciones</th>
                                         </tr>
                                     </thead>
 
@@ -122,28 +122,36 @@ export const MostrarClientes = () => {
                                                 <td className="text-center" style={{ verticalAlign: 'middle' }}>
                                                     
                                                     {/* 
-                                                      - flex-row: Siempre horizontales en cualquier pantalla.
-                                                      - gap-4: Crea una separación muy marcada en medio de ambos botones.
-                                                      - px-3: Colchón interno de seguridad para alejarlos de los bordes laterales de la celda.
+                                                      Contenedor centrado. Eliminamos clases complejas de gap para asegurar 
+                                                      compatibilidad absoluta con cualquier versión de Bootstrap.
                                                     */}
-                                                    <div className="d-flex flex-row justify-content-center align-items-center gap-4 px-3">
+                                                    <div className="d-flex flex-row justify-content-center align-items-center p-1">
                                                         
-                                                        {/* Botón Editar */}
+                                                        {/* 
+                                                          Botón Editar:
+                                                          - flex-column flex-md-row: En celular pone icono arriba y texto abajo (cuadrado). En PC todo en línea.
+                                                          - mr-2 mr-md-3: 🌟 CLAVE: Fuerza un margen derecho inamovible para separarlo del botón de eliminar.
+                                                        */}
                                                         <Link 
                                                             to={`/clientes/editar/${cliente._id}`} 
-                                                            className="btn btn-sm btn-primary w-100 d-flex align-items-center justify-content-center py-1"
-                                                            style={{ minWidth: '95px' }}
+                                                            className="btn btn-sm btn-primary d-flex flex-column flex-md-row align-items-center justify-content-center p-2 lh-sm mr-2 mr-md-3 text-decoration-none"
+                                                            style={{ width: '65px', height: '65px', minWidth: '100px', minHeight: '0px' }}
                                                         >
-                                                            <i className="fa fa-pen mr-2"></i> Editar
+                                                            <i className="fa fa-pen mb-1 mb-md-0 mr-0 mr-md-2"></i> 
+                                                            <span style={{ fontSize: '1rem' }} className="d-block text-center font-weight-normal">Editar</span>
                                                         </Link>
-                                                        <p className="d-flex flex-column flex-sm-row justify-content-center gap- gap-sm-0 px-2 px-sm-2"></p>
-                                                        {/* Botón Eliminar */}
+
+                                                        {/* 
+                                                          Botón Eliminar:
+                                                          - Mantiene las mismas dimensiones exactas (65px) para formar el cuadrado perfecto.
+                                                        */}
                                                         <button 
                                                             onClick={(e) => eliminarClientes(e, cliente._id)} 
-                                                            className="btn btn-sm btn-danger w-100 d-flex align-items-center justify-content-center py-1"
-                                                            style={{ minWidth: '100px' }}
+                                                            className="btn btn-sm btn-danger d-flex flex-column flex-md-row align-items-center justify-content-center p-2 lh-sm"
+                                                            style={{ width: '65px', height: '65px', minWidth: '100px', minHeight: '0px' }}
                                                         >
-                                                            <i className="fa fa-trash mr-2"></i> Eliminar
+                                                            <i className="fa fa-trash mb-1 mb-md-0 mr-0 mr-md-2"></i> 
+                                                            <span style={{ fontSize: '1rem' }} className="d-block text-center font-weight-normal">Eliminar</span>
                                                         </button>
 
                                                     </div>
